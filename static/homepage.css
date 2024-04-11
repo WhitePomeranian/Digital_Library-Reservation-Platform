@@ -1,0 +1,308 @@
+html {
+    background-color: rgb(255,255,255);
+}
+
+body {
+    margin: 0%;
+    padding: 0%;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+div.ceiling {
+    background-color:crimson;
+    padding: 8px;
+}
+
+div.main {
+    margin: auto;
+    width: 85%;
+    flex: 1 0 auto;
+}
+
+div.footer {
+    background-color: crimson;
+    padding: 10px;
+    text-align: center;
+    margin-top: 5%;
+}
+
+div.header {
+    background-color: rgb(225,225,225);
+    margin-top: 1%;
+    display: flex;
+    align-items: flex-end;
+}
+
+hr.relay {
+    width: 100%;
+    height: 8px;
+    background-color: bisque;
+    color: bisque;
+    border: none;
+    margin-top: 0%;
+}
+
+div.right_content {
+    background-color: rgb(225,225,225);
+    width: 75%;
+    margin-top: -0.65%;
+    float: left;
+    height: 751.5px;
+}
+
+div.right_content fieldset {
+    height: 732.5px;
+}
+
+div.left_content {
+    background-color: rgb(225,225,225);
+    width: 25%;
+    margin-top: -0.65%;
+    float: left;
+}
+
+img.library {
+    margin-left: 0.5%;
+    float: left;
+}
+
+img.bookshelf {
+    margin-left: 1.5%;
+    margin-top: 1.15%;
+    float: left;
+}
+
+img.login {
+    float: left;
+    margin-left: 3px;
+}
+
+img.logout {
+    float: right;
+    margin-top: -38%;
+    margin-left: 1%;
+}
+
+img.open-book {
+    float: left;
+    margin-left: 3px;
+}
+
+img.notification {
+    float: left;
+    margin-left: 3px;
+}
+
+img.warning {
+    float: left;
+    margin-left: 3px;
+}
+
+h1.h1 {
+    color: black;
+    font-weight: bolder;
+    font-size: 40px;
+    margin-top: -3px;
+    margin-left: 6px;
+    float: left;
+    margin-bottom: 0%;
+}
+
+h1.h1 span {
+    font-size: 20px;
+}
+
+fieldset span {
+    font-weight: 600;
+    max-width: 10px;
+    overflow-wrap: break-word;
+}
+
+legend {
+    font-weight: 600;
+    text-align: center;
+}
+
+a.a1 {
+    font-size: larger;
+    font-weight: 600; 
+    margin-left: 45%;
+    margin-bottom: 5px;
+    text-decoration: none;
+}
+
+a.a1:hover {
+    color: blue;
+}
+
+div.searchtype {
+    margin-top: 5px;
+    display: flex;
+    justify-content: center;
+}
+
+img.star {
+    display: block;
+    float: left;
+    margin-right: 13px;
+    margin-top: -5px;
+}
+
+select.searchtype {
+    display: block;
+    float: left;
+    height: 39px;
+    font-weight: 600;
+    font-size: 25px;
+    margin-top: 2.5px;
+}
+
+
+input.searchtype {
+    display: block;
+    float: left;
+    margin-left: 10px;
+    height: 18px;
+    width: 60%;
+    font-weight: 600;
+    font-size: 20px;
+    background-image: url('../static/magnifier.png');
+    background-size: 20px;
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+}
+
+button.searchtype {
+    display: block;
+    float: left;
+    margin-left: 10px;
+    height: 39px;
+    font-weight: 600;
+    font-size: 25px;
+    margin-top: 2.5px;
+}
+
+hr.searchtype {
+    height: 4px;
+    background: linear-gradient(to right, transparent 1%, #ed05055c 15%, #fe0000a5 30%, #f60202 50%, #fe0000a5 80%, transparent 99%);
+    border: none;
+    margin: 20px 0;
+}
+
+h2.rearchresult {
+    font-weight: 600;
+}
+
+#books {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    border-radius: 2px;
+}
+  
+#books td, #books th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    font-weight: 600;
+  }
+  
+#books tr:nth-child(even){background-color: #f2f2f2;}
+  
+#books tr:hover {background-color: #ddd;}
+  
+#books th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: crimson;
+    color: white;
+}
+
+img.target {
+    float: right; 
+    margin-right: 15%;
+}
+
+ul.target {
+    margin-left: 15%;
+}
+
+li.target {
+    font-weight: 600;
+    font-size: 25px;
+}
+
+button[type=button] {
+    background-color: crimson;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+}
+  
+button[type=button]:hover {
+    background-color: crimson;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 10px;
+    border: 1px solid #888;
+    width: 300px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+}
+
+.modal-button {
+    background-color: crimson;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    margin-left: 10%;
+}
+
+.button-group {
+    display: flex;
+}
+
+.button {
+    padding: 10px 20px;
+    background-color: #e0e0e0;
+    border: none;
+    color: #000;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.button:not(:last-child) {
+    border-right: 1px solid #ccc;
+}
+
+.button:hover {
+    background-color: #ccc;
+}

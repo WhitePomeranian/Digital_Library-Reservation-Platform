@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登入</title>
+    <link href="../static/bootstrap-5.0.0-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="/static/library.png">
+    <script src="../static/bootstrap-5.0.0-dist/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+        * {
+            font-weight: 600;
+        }
+
+        div.header {
+            margin-top: 1%;
+            display: flex;
+            align-items: flex-end;
+        }
+
+        img.library {
+            margin-left: 0.5%;
+            float: left;
+        }
+
+        h1.h1 {
+            color: black;
+            font-weight: bolder;
+            font-size: 40px;
+            margin-top: -3px;
+            margin-left: 8px;
+            float: left;
+            align-self: flex-end;
+            margin-bottom: 0%;
+        }
+
+        h1.h1 span {
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="header">
+                            <img class="library" src="../static/library.png" width="100px">
+                            <h1 class="h1"><span style="color: crimson;">&nbsp;POMERANIAN LIBRARY</span><br>博美犬市立圖書館</h1>
+                        </div>
+                        <br>
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            {{ form }}
+                            <br>
+
+                            {% if failure_sign_in %}
+                                <div class="alert alert-danger">
+                                    {{ failure_sign_in }}
+                                </div>
+                            {% endif %}
+
+                            <button type="submit" class="btn btn-primary w-100" style="font-weight: 600; color: black; background-color: crimson;">登入</button>
+
+                            <p style="margin-top: 3px;">還沒有帳號嗎? <a href="{% url 'sign_up' %}">註冊</a></p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

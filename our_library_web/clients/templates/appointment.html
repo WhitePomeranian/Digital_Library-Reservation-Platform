@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <link rel="stylesheet" href="/static/homepage.css">
+    <link rel="icon" href="/static/library.png">
+    <title>預約清單</title>
+    <style>
+        button.appointment {
+            background-color: crimson;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        button.appointment:hover {
+            background-color: crimson;
+        }
+    </style>
+</head>
+
+
+<body>
+    <div class="ceiling">
+    </div>
+
+    <div class="main">
+
+        <div class="header">
+            <a href="{% url 'homepage' %}"><img class="library" src="/static/library.png" width="100px"></a>
+            
+            <h1 class="h1"><span style="color: crimson;">&nbsp;POMERANIAN LIBRARY</span><br>博美犬市立圖書館</h1>
+            <img class="bookshelf" src="/static/bookshelf.png" width="200px">
+            <a class="a1" href="{% url 'sign_out' %}" role="button">登出<img class="logout" src="/static/logout.png"
+                    width="20px"></a>
+
+        </div>
+
+        <hr class="relay">
+
+        <div class="left_content">
+            <fieldset>
+                <legend><img class="login" src="/static/login.png" width="20px">&thinsp; 用戶資訊 &thinsp;</legend>
+                <span>
+                    姓名: {{ user.last_name }}{{ user.first_name }} <br>
+                    帳號: {{ user.username }} <br>
+                    性別: {% if user_profile.gender == 'M' %}男{% elif user_profile.gender == 'F' %}女{% endif %} <br>
+                    生日: {{ user_profile.birthday }} <br>
+                    電子郵件: {{ user.email }}
+                </span>
+                <form action="{% url 'appointment' %}" method="get">
+                    <button type="submit" class="appointment">預約查詢</button>
+                </form>
+            </fieldset>
+
+            <fieldset style="margin-top: 2%;">
+                <legend><img class="notification" src="/static/notification.png" width="20px">系統操作說明</legend>
+                <div style="color: blue; font-weight: 600;">
+                    <span>
+                        i. 本系統為博美犬圖書館的書籍預約系統，可於右方的輸入欄內搜尋書籍。<br><br>
+                        ii. 欲進行預約時，可點擊「預約」按鈕。圖書館員會在該館藏於可借用時，替您進行保留。<br><br>
+                        iii. 當預約書籍可借閱時，圖書館員會再使用電子郵件通知。<br><br>
+                        iv. 請在通知發送後7天內至圖書館領取書籍，完成借閱。<br><br>
+                    </span>
+                </div>
+            </fieldset>
+
+            <fieldset style="margin-top: 2%;">
+                <legend><img class="warning" src="/static/warning.png" width="20px">&thinsp; 注意事項 &thinsp;</legend>
+                <div style="color: blue; font-weight: 600;">
+                    <span>
+                        i. 若進行預約，屆時卻未前往圖書館借閱書籍次數達3次者，帳號停權處置。<br><br>
+                        ii. 本服務完全免費，請勿使用他人帳號預約。<br><br>
+                        iii. 若有任何問題，歡迎使用以下聯絡資訊。<br><br>
+                        - 電話:(04) 2512-5678<br>
+                        - 電子郵件:WhitePomeranian@mail.c<br>om
+                    </span>
+                </div>
+            </fieldset>
+
+        </div>
+
+        <div class="right_content">
+            <fieldset class="searchtype">
+                <legend><img class="open-book" src="/static/open-book.png" width="20px">&thinsp; 預約清單 &thinsp;</legend>
+
+
+                {% if results %}
+                <div class="paginator">
+                    {% if results.has_previous %}
+                    <a href="?page=1" class="button">&laquo; first</a>
+                    <a href="?page={{ results.previous_page_number }}" class="button">previous</a>
+                    {% else %}
+                    <a class="button">&laquo; first</a>
+                    <a class="button">previous</a>
+                    {% endif %}
+
+                    {% for num in results.paginator.page_range %}
+                    {% if num == results.number %}
+                    <button type="button" class="active">{{ num }}</button>
+                    {% else %}
+                    <a href="?page={{ num }}" class="button">{{ num }}</a>
+                    {% endif %}
+                    {% endfor %}
+
+                    {% if results.has_next %}
+                    <a href="?page={{ results.next_page_number }}" class="button">next</a>
+                    <a href="?page={{ results.paginator.num_pages }}" class="button">last &raquo;</a>
+                    {% else %}
+                    <a class="button">next</a>
+                    <a class="button">last &raquo;</a>
+                    {% endif %}
+                </div>
+
+
+                <h2 class="searchresult">&nbsp; &#128213; 共有 {{ results.paginator.count }} 筆搜尋結果：</h2>
+                <table id="books">
+                    <tr>
+                        <th>user</th>
+                        <th>book</th>
+                        <th>time</th>
+                        <th></th>
+                    </tr>
+                    {% for result in results.object_list %}
+                    <tr>
+                        <td>{{ result.user }}</td>
+                        <td>{{ result.book }}</td>
+                        <td>{{ result.reservation_date }}</td>
+                        <td>
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="user" value="{{ result.user }}">
+                                <input type="hidden" name="book" value="{{ result.book }}">
+                                <button type="submit" onclick="alarm_cancel()">取消</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+
+                </table>
+                {% elif results.paginator.count > 0 %}
+                <h2 class="searchresult">&nbsp; &#128213; 0 筆搜尋結果!</h2>
+                {% endif %}
+
+                <script>
+                    function alarm_cancel(){
+                        alert("取消成功");
+                    }
+                </script>
+
+
+            </fieldset>
+        </div>
+    </div>
+    <div class="footer">
+    </div>
+
+
+</body>
+
+</html>

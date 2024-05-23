@@ -5,7 +5,7 @@
 3. 點擊圖書館Logo可返回首頁
 4. 此project僅為概念之雛形，無和現實之任一圖書館相連結
 
-<b>註: 執行程式時，有些書籍已經不可預約是正常的，因為有其中10本書被我建立的帳戶預約了，請從第2頁的書來進行測試。也可透過admin來將那些書變為可預約:<br>
+<b>Superuser:<br>
 Username: WhitePomeranian<br>
 Password: BlackPomeranian<br>
 </b>
